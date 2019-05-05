@@ -1,7 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="cart">
+      <h1>开课吧购物车</h1>
+      <!--课程列表-->
+      <ul>
+        <li>
+          <span></span>
+          <span></span>
+          <span></span>
+        </li>
+      </ul>
+      <!--购物车-->
+    </div>
   </div>
 </template>
 
@@ -12,7 +22,20 @@ export default {
   name: 'app',
   components: {
     HelloWorld
-  }
+  },
+  data() {
+    return {
+      dataList: []
+    }
+  },
+  created() {
+
+  },
+  methods: {
+    name() {
+
+    }
+  },
 }
 </script>
 
