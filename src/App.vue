@@ -28,8 +28,12 @@ export default {
       dataList: []
     }
   },
-  created() {
+  async created() {
+    try {
+      await 
+    }catch(error){
 
+    }
   },
   methods: {
     name() {
