@@ -20,7 +20,8 @@
         methods: {
             onInput(e) {
                 //通知老爹发生了input事件——这个事件名是不能更改的，因为是语法糖
-                this.$emit('input',e.target.value)
+                this.$emit('input',e.target.value);
+                this.$parent.$emit('validate')
             }
         },
     }
