@@ -13,16 +13,19 @@
             </ul>
             <!--购物车-->
             <cart name="开课吧购物车"></cart>
+
+            <!--实现form-->
+            <form-test></form-test>
         </div>
     </div>
 </template>
 
 <script>
     import Cart from './components/Cart.vue'
-
+    import FormTest from './components/FormTest.vue';
     export default {
         name: 'app',
-        components: {Cart},
+        components: {Cart,FormTest},
         data() {
             return {
                 dataList: [],
