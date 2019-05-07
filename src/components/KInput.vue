@@ -1,6 +1,6 @@
 <template>
     <div class="kInput">
-        <input :type="type" :value="value" @input="onInput">
+        <input :type="type" :value="value" @input="onInput" @blur="onBlur">
     </div>
 </template>
 
@@ -21,7 +21,10 @@
             onInput(e) {
                 //通知老爹发生了input事件——这个事件名是不能更改的，因为是语法糖
                 this.$emit('input',e.target.value);
-                this.$parent.$emit('validate')
+                this.$parent.$emit('validate','input')//告诉监听的地方，
+            },
+            onBlur(e){
+                this.$parent.$emit('validate','blur')
             }
         },
     }
