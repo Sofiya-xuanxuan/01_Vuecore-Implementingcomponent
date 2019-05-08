@@ -21,7 +21,9 @@
         <h1>实现k-form组件</h1>
         <k-form :model="loginForm" :rules="rules" ref="loginForm2" label-width="100px">
             <k-form-item label="用户名：" prop="username">
-                <k-input type="text" v-model="loginForm.username"></k-input>
+                <div>
+                    <k-input type="text" v-model="loginForm.username"></k-input>
+                </div>
             </k-form-item>
             <k-form-item label="密码：" prop="password">
                 <k-input type="password" v-model="loginForm.password"></k-input>
@@ -51,10 +53,13 @@
                 },
                 rules:{
                     username:[
-                        {required:true,message:'请输入用户名',trigger:'blur'}
+                        {required:true,message:'请输入用户名',trigger:'change'}
                     ],
                     password:[
-                        {required:true,message:'请输入密码',trigger:'blur'}
+                        {required:true,message:'请输入密码',trigger:'blur'},
+                        {validator:(rule,value,cb)=>{
+                            cb(new Error())
+                            },message:'密码输入错误'}
                     ]
                 }
             }

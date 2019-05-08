@@ -23,10 +23,12 @@
             this.$on('validate',this.validate)
         },
         methods: {
-            validate() {
+            //回调函数中，将派发过来的事件触发方式获取一下
+            validate(eventType) {
               return new Promise(resolve => {
                   //校验规则定制
-                  const descriptor={[this.prop]:this.form.rules[this.prop]};
+                  const validateRules=this.form.rules[this.prop].filter(item=>item.trigger==eventType);
+                  const descriptor={[this.prop]:validateRules};
                   //创建校验器
                   const validator=new Validator(descriptor);
                   //执行校验

@@ -1,7 +1,11 @@
+//node.js代码
+//所以导出方式不一样
 module.exports={
+    publicPath:'/kcart',//解决history模式遇到的路由问题
     configureWebpack:{
         devServer:{
             before(app){
+                //app是express的实例
                 app.get('/api/goods',function(req,res) {
                     res.json({
                         code:0,
