@@ -7,7 +7,6 @@
 <script>
     import Emitter from '@/service/util.js';
 
-    console.log(Emitter);
     export default {
         name: "KInput",
         mixins:[Emitter],
@@ -31,11 +30,10 @@
                 //dispatch使用——以防如果嵌套了多层div后，不能准确找到父组件
                 this.dispatch('KFormItem','validate',e.target.value);
             },
-            onChange(e){
-                console.log(111);
+            onChange(){
                 this.$parent.$emit('validate','change')
             },
-            onBlur(e){
+            onBlur(){
                 this.$parent.$emit('validate','blur')
             }
         },

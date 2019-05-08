@@ -1,5 +1,17 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div id="about">
+    <form-test></form-test>
   </div>
 </template>
+
+<script>
+  import FormTest from '@/components/FormTest.vue';
+  export default {
+    name:"About",
+    components: {FormTest}
+  }
+</script>
+
+<style scoped>
+
+</style>

@@ -10,6 +10,6 @@ Vue.prototype.$bus=new Vue();
 Vue.prototype.$axios = axios
 
 new Vue({
-  router,
+  router,//router挂载，为什么呢？稍后解答
   render: h => h(App)
 }).$mount('#app')

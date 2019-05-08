@@ -70,7 +70,6 @@
                     if (valid) {
                         alert('登录成功!');
                     } else {
-                        console.log('error submit!!');
                         return false;
                     }
                 });
@@ -80,7 +79,6 @@
                     if (valid) {
                         alert('登录成功!');
                     } else {
-                        console.log('error submit!!');
                         return false;
                     }
                 });
