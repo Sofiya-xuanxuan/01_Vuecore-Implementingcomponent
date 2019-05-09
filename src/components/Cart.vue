@@ -60,9 +60,7 @@
             })
         },
         methods: {
-            add() {
 
-            }
         },
         computed: {
             //计算总价
@@ -77,7 +75,7 @@
         },
         watch: {
             cart: {
-                handler(newValue, oldValue) {
+                handler(newValue) {
                     localStorage.setItem('cart', JSON.stringify(newValue))
                 },
                 deep: true//深层监听对象

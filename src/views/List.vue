@@ -1,9 +1,9 @@
 <template>
     <div id="List">
         <!--课程列表-->
-        <ul>
-            <li v-for="item in goods" :ket="item.id">
-                <router-link :to="`/detail/${item.id}`">
+        <ul v-if="!childShow">
+            <li v-for="item in goods" :key="item.id">
+                <router-link :to="`/home/list/detail/${item.id}`">
                     <span class="margin_left">{{item.id}}</span>
                     <span class="margin_left">{{item.text}}</span>
                     <span class="margin_left">￥{{item.price}}</span>
@@ -12,6 +12,7 @@
 
             </li>
         </ul>
+        <router-view v-else></router-view>
     </div>
 </template>
 
@@ -20,7 +21,8 @@
         name: "List",
         data() {
             return {
-                goods: []
+                goods: [],
+                childShow:false
             }
         },
         async created() {
@@ -32,10 +34,20 @@
             }
         },
         methods: {
+            //添加购物车
             addCart(good) {
                 this.$bus.$emit('addCart',good);
             }
         },
+        watch:{
+            '$route'(to,from){
+                if (from.path.split('/').length > 2 ) {
+                    this.childShow = true;
+                } else  {
+                    this.childShow = false;
+                }
+            }
+        }
     }
 </script>
 
