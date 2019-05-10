@@ -8,7 +8,7 @@ import List from './views/List.vue'
 import Cart from './views/Cart.vue'
 //三级路由
 import Detail from './views/Detail.vue'
-
+import store from './store';//这边的store可以全局使用
 Vue.use(Router)
 
 const routerMap = new Router({
@@ -25,7 +25,7 @@ const routerMap = new Router({
             redirect: '/home/list',
             children: [
                 {
-                    path: '',
+                    path: 'list',
                     name:'list',
                     component: List,
                     children: [
@@ -44,7 +44,7 @@ const routerMap = new Router({
             //路由独享守卫
             // beforeEnter(to, from, next) {
             //     //判断是否登录
-            //     if (!window.isLogin) {//未登录
+            //     if (!store.state.isLogin) {//未登录
             //         //next({name:'login',query:{redirect:to.path}})//等同于下面
             //         next('/login?redirect=' + to.path)//登录成功后要重定向，将重定向的地址放在路由上，一会儿登录页要拿出来重定向
             //     } else {
@@ -61,7 +61,7 @@ const routerMap = new Router({
 routerMap.beforeEach((to, from, next) => {
     //to.meta：取到to.meta的值，来知道哪些路由需要守卫
     //判断是否登录
-    if (to.meta.requireLogin && !window.isLogin) {//未登录
+    if(to.meta.requireLogin && !store.state.isLogin) {//未登录
         //next({name:'login',query:{redirect:to.path}})//等同于下面
         next('/?redirect=' + to.path)//登录成功后要重定向，将重定向的地址放在路由上，一会儿登录页要拿出来重定向
     } else {

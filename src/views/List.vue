@@ -7,9 +7,8 @@
                     <span class="margin_left">{{item.id}}</span>
                     <span class="margin_left">{{item.text}}</span>
                     <span class="margin_left">￥{{item.price}}</span>
-                    <button @click.prevent.stop="addCart(item)">加入购物车</button>
+                    <button @click.prevent.stop="onAddCart(item)">加入购物车</button>
                 </router-link>
-
             </li>
         </ul>
         <router-view v-else></router-view>
@@ -17,6 +16,7 @@
 </template>
 
 <script>
+    import {mapMutations} from 'vuex';
     export default {
         name: "List",
         data() {
@@ -34,17 +34,20 @@
             }
         },
         methods: {
+            ...mapMutations(['addCart']),
             //添加购物车
-            addCart(good) {
-                this.$bus.$emit('addCart',good);
+            onAddCart(good) {
+                this.addCart(good);
+                this.$router.push('/home/cart')
             }
         },
         watch:{
-            '$route'(to,from){
+            '$route'(to, from) {//监听切换子页面
+                if (to.path.split('/').length > 2 ) {
+                    this.childShow = true;
+                }
                 if (from.path.split('/').length > 2 ) {
                     this.childShow = true;
-                } else  {
-                    this.childShow = false;
                 }
             }
         }

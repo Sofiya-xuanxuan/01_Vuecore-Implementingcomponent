@@ -1,7 +1,9 @@
 <template>
   <div id="app">
+    {{count}} <button @click="add">add</button>
     <div id="nav">
-      <router-link to="/">Login</router-link>|
+      <router-link to="/" v-if="!isLogin">Login</router-link>
+      <span>{{loginState}}</span>|
       <router-link to="/home">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
@@ -9,7 +11,24 @@
     <router-view/>
   </div>
 </template>
-
+<script>
+  import {mapState,mapGetters} from 'vuex';
+  import kStore from './kStore';
+  export default {
+    methods: {
+      add() {
+        kStore.commit('add',5);
+      }
+    },
+    computed:{
+      ...mapState(['isLogin']),//等同于$store.state.isLogin
+      ...mapGetters(['loginState']),//等同于$store.getters.loginState
+      count(){
+        return kStore.state.count
+      }
+    }
+  }
+</script>
 <style>
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
